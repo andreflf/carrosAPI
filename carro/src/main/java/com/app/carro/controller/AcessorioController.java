@@ -24,7 +24,8 @@ public class AcessorioController {
 	@Autowired //sempre do obj da service
 	private AcessorioService acessorioService;
 	
-	@PreAuthorize("hasAuthority('ADMIN') OR hasRole('USER')")
+	//@PreAuthorize("hasAuthority('ADMIN') OR hasRole('USER')")
+	@PreAuthorize("hasAuthority('ADMIN')") //para que apenas um user com role ADMIN possa consumir esse endpoint (evitar "ataques" de fora)
 	@PostMapping("/save")
 	public ResponseEntity<String> save(@RequestBody Acessorio acessorio){
 		
@@ -60,6 +61,7 @@ public class AcessorioController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
+	@PreAuthorize("hasAuthority('ADMIN')") //para que apenas um user com role ADMIN possa consumir esse endpoint (evitar "ataques" de fora)
 	@DeleteMapping("/deleteById/{id}")
 	public ResponseEntity<String> deleteById(@PathVariable Long id) {
 		try {
@@ -70,6 +72,7 @@ public class AcessorioController {
 			return new ResponseEntity<>("Erro ao deletar", HttpStatus.BAD_REQUEST);
 		}
 	}
+	@PreAuthorize("hasAuthority('ADMIN')") //para que apenas um user com role ADMIN possa consumir esse endpoint (evitar "ataques" de fora)
 	@PutMapping("/update/{id}")
 	public ResponseEntity<String> update(@RequestBody Acessorio acessorio, @PathVariable Long id) {
 		try {

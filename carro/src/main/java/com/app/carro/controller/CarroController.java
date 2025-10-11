@@ -24,6 +24,7 @@ public class CarroController {
 	@Autowired //sempre do obj da service
 	private CarroService carroService;
 	
+	@PreAuthorize("hasAuthority('ADMIN')") //para que apenas um user com role ADMIN possa consumir esse endpoint (evitar "ataques" de fora)
 	@PostMapping("/save")
 	public ResponseEntity<String> save(@RequestBody Carro carro){
 		
@@ -49,7 +50,6 @@ public class CarroController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-	@PreAuthorize("hasAuthority('ADMIN')") //para que apenas um user com role ADMIN possa consumir esse endpoint (evitar "ataques" de fora)
 	@GetMapping("/findAll")
 	public ResponseEntity<List<Carro>> findAll(){
 		try {
@@ -60,6 +60,7 @@ public class CarroController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
+	@PreAuthorize("hasAuthority('ADMIN')") //para que apenas um user com role ADMIN possa consumir esse endpoint (evitar "ataques" de fora)
 	@DeleteMapping("/deleteById/{id}")
 	public ResponseEntity<String> deleteById(@PathVariable Long id) {
 		try {
@@ -70,6 +71,7 @@ public class CarroController {
 			return new ResponseEntity<>("Erro ao deletar", HttpStatus.BAD_REQUEST);
 		}
 	}
+	@PreAuthorize("hasAuthority('ADMIN')") //para que apenas um user com role ADMIN possa consumir esse endpoint (evitar "ataques" de fora)
 	@PutMapping("/update/{id}")
 	public ResponseEntity<String> update(@RequestBody Carro carro, @PathVariable Long id) {
 		try {

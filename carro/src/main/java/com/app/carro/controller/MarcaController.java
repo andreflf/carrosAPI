@@ -24,6 +24,7 @@ public class MarcaController {
 	@Autowired //sempre do obj da service
 	private MarcaService marcaService;
 	
+	@PreAuthorize("hasAuthority('ADMIN')") //para que apenas um user com role ADMIN possa consumir esse endpoint (evitar "ataques" de fora)
 	@PostMapping("/save")
 	public ResponseEntity<String> save(@RequestBody Marca marca){
 		
@@ -49,7 +50,7 @@ public class MarcaController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-	@PreAuthorize("hasAuthority('USER')")
+	
 	@GetMapping("/findAll")
 	public ResponseEntity<List<Marca>> findAll(){
 		try {
@@ -60,6 +61,8 @@ public class MarcaController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@PreAuthorize("hasAuthority('ADMIN')") //para que apenas um user com role ADMIN possa consumir esse endpoint (evitar "ataques" de fora)
 	@DeleteMapping("/deleteById/{id}")
 	public ResponseEntity<String> deleteById(@PathVariable Long id) {
 		try {
@@ -70,6 +73,8 @@ public class MarcaController {
 			return new ResponseEntity<>("Erro ao deletar", HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@PreAuthorize("hasAuthority('ADMIN')") //para que apenas um user com role ADMIN possa consumir esse endpoint (evitar "ataques" de fora)
 	@PutMapping("/update/{id}")
 	public ResponseEntity<String> update(@RequestBody Marca marca, @PathVariable Long id) {
 		try {
