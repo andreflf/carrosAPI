@@ -37,7 +37,7 @@ O sistema implementa autenticação e autorização baseadas em **JWT (JSON Web 
 ### 🔸 Autenticação
 | Método | Endpoint | Descrição |
 |--------|-----------|-----------|
-| `POST` | `/api/auth/login` | Autentica o usuário e gera o token JWT |
+| `POST` | `/api/login` | Autentica o usuário e gera o token JWT |
 
 ### 🔸 Carros, Marcas e Acessórios (possuem a mesma estrutura nas controllers)
 | Método | Endpoint | Descrição |
