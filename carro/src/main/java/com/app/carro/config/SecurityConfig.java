@@ -39,7 +39,7 @@ public class SecurityConfig  {
 		.cors(AbstractHttpConfigurer::disable)
 		.authorizeHttpRequests((requests) -> requests
 				.requestMatchers("/api/login").permitAll() //endpoint público de login, nao precisa de autenticaçao para acessar
-				.requestMatchers("/api/register").permitAll() //endpoint público de criar conta (implementar)
+				.requestMatchers("/api/usuario/save").permitAll() //endpoint público de criar conta
 				.anyRequest().authenticated())
 		.authenticationProvider(authenticationProvider)
 		.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
