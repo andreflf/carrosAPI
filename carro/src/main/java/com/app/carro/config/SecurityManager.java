@@ -21,7 +21,7 @@ public class SecurityManager {
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
+		return new BCryptPasswordEncoder(); //criptografa a senha
 	}
 
 	
@@ -29,7 +29,7 @@ public class SecurityManager {
 	public AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 		authProvider.setUserDetailsService(userDetailsService());
-		authProvider.setPasswordEncoder(passwordEncoder());
+		authProvider.setPasswordEncoder(passwordEncoder()); 
 		return authProvider;
 	}
 
